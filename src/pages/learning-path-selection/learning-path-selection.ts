@@ -41,6 +41,7 @@ learningpathdata=[];
   
   viewLearningPath(){
     this.requestData=this.PhpServer.getUsername();
+    this
 
 
   }
