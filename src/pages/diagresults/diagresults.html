@@ -1,0 +1,88 @@
+<!--
+  Generated template for the DiagresultsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    </head>
+  <ion-navbar>
+    <ion-title>diagresults</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    	<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+                <br>
+                <!-- <div class="w3-display-middle"> --><center>
+                
+                    <div div style=" background-color: white; width: 80%; border-radius: 25px;margin:0 auto">
+                    <br>
+                    <h1 class="w3-jumbo w3-animate-top" style="color:black">&nbsp; Results</h1><br>
+                
+                    <!-- <h5 class="w3-jumbo w3-animate-top">All new users are required to take a diagnostic exam</h5> -->
+                            <hr style="width:80%;border-color:#006dcc">
+                    <br>
+                    <div class="big-message">
+                    <ion-grid class="aligned-to-center"  style="color:black;width:80%" id="customers">
+                        <ion-row style="color:black">
+                            <ion-col>Lesson</ion-col>
+                            <ion-col>Score</ion-col>
+                            <ion-col style="text-align:right">Percentage</ion-col>
+                        </ion-row>
+                        <?php $excemptedlesson[]="";
+                              $counter=0;
+                              $excemptstatus = 0;
+                        ?>
+                
+                        @foreach($geion-rowesults as $result)
+                            <?php $counter ++; ?>
+                            <ion-row style="color:black">
+                            <ion-col>{{$result->lesson->lesson_name}}</ion-col>
+                            <ion-col>{{$result->userscore}}/{{$result->perfectscore}}</ion-col>
+                
+                            @if($result->percentage >= 90)
+                            <?php $excemptedlesson[$counter]=$result->lesson->lesson_name;
+                                  $excemptstatus=1;
+                            ?>
+                            <ion-col style="color:lime;text-align:right">{{$result->percentage}}%</ion-col>
+                            @elseif($result->percentage >=60)
+                            <ion-col style="color:orange;text-align:right">{{$result->percentage}}%</ion-col>
+                            @else($result->percentage <60)
+                            <ion-col style="color:red;text-align:right">{{$result->percentage}}%</ion-col>
+                            @endif
+                            </ion-row>
+                        @endforeach()
+                        
+                    </ion-grid>
+                    
+                    <br><br>
+                    </div>
+                    
+                            <hr style="width:80%;border-color:#006dcc">
+                    <br><br>
+                    
+                        <?php if($excemptstatus==1){?>
+                            <div div style=" background-color: white; width: 500px; border-radius: 25px;margin:0 auto">
+                                <h3 style="color:black">For doing excellently in a lesson, you have been excempted in</h3>
+                
+                                <h1 style="color:black">
+                                <?php foreach($excemptedlesson as $lesson){
+                                    echo " ".$lesson."<br>";
+                                }?>
+                                </h1>
+                        <?php } ?>
+                    <br><br>
+                    
+                    </div>
+                
+                    <br><br>
+
+</ion-content>
+
+

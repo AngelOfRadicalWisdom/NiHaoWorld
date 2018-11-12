@@ -1,0 +1,93 @@
+<!--
+  Generated template for the StartlessonPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <ion-navbar>
+    <ion-title>startlesson</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div class="bgimg w3-display-container w3-animate-opacity w3-text-white" style="color:white">
+        <br>
+        <h2 id="app_status" style="text-align:center"></h2>
+        <br>
+        <center>
+        
+          <div style=" background-color: white; width: 80%; border-radius: 25px;">
+          <br><br>
+          <h1 style="color:black"><?php echo $node_ID;?></h1>
+              <br>
+              <hr style="width:80%;border-color:#006dcc">
+              <br>
+          
+          @if($prerequisitestatus === "notallowed")
+                  <ion-grid style="margin: 0px auto;width:0%;text-align:center">
+                  @foreach($lessons as $lesson)
+                  <ion-row>
+      
+                      @foreach($lessons as $lesson)
+                      
+                                  
+                              @foreach($lessonstatus as $status)
+                              @if($status->lesson_ID == $lesson->lesson_ID)
+                              @if($status->status == 1)   
+                              <ion-col style="width:80%"><a class="Mbutton" href="http://localhost:8000/reviewee/startmodule/{{$lesson->revcenter_ID}}/{{$lesson->lesson_name}}/1" style="color:white" class="Mbutton" >{{$lesson->lesson_name}}✓</a></ion-col>  
+                              @else()
+                              <ion-col><div><a class="divbutton">{{$lesson->lesson_name}}</a></div></ion-col>  
+                              @endif()
+                              @endif()
+                      @endforeach
+      
+                  </ion-row>
+                  @endforeach
+      
+                  </ion-row>
+                  @endforeach
+                  
+                  </ion-grid>
+                  <br><br>
+                  <h3 style="color:black"><?php echo $prerequisitemessage; ?></h3>
+          @endif
+              
+              
+              @if($prerequisitestatus === "allowed")
+                  <ion-grid style="margin: 0px auto;width:40%;text-align:center">
+                  @foreach($lessons as $lesson)
+                  <ion-row>
+                  
+      
+                      
+                                  <ion-col><a href="http://localhost:8000/reviewee/startmodule/{{$lesson->revcenter_ID}}/{{$lesson->lesson_name}}/1" style="color:white" class="button" >{{$lesson->lesson_name}}
+                              @foreach($lessonstatus as $status)
+                              @if($status->lesson_ID == $lesson->lesson_ID)
+                              @if($status->status == 1)   
+                              ✓ 
+                              @endif()
+                              </a>
+                              </ion-col>
+                              @endif()
+                      @endforeach
+      
+                  </ion-row>
+                  @endforeach
+                  </ion-grid>
+              @endif
+              <br><br>
+        </div>
+      
+        <br><br>
+      
+      
+        <br><br>
+</ion-content>
+	

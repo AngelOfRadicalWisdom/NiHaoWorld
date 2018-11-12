@@ -1,0 +1,61 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <ion-navbar>
+    <ion-title>profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div class="bgimg w3-display-container w3-animate-opacity w3-text-white" style="color:black">
+        <center>
+      <br><br><br>
+        <center>
+        <div div style="background-color: white;border-radius: 25px;" class="profilecontainer">
+        <br> <br>
+        @if($user->gender == "Male")
+        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" style="width:200px">
+        @endif()
+        @if($user->gender == "Female")
+        <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" style="width:200px">
+        @endif()
+        <h1>{{$user->firstname}} {{$user->lastname}}
+        </h1>
+            <br>
+            <ion-grid class="ion-grid aligned-to-center profileion-grid"style="color:black;">
+                <ion-row>
+                    <ion-col style="text-align:left" class="formname"> <h3>Gender:</td>
+                    <td style="text-align:center"><h4> {{$user->gender}}</td>
+                </ion-row>
+                <ion-row>
+                    <td style="text-align:left" class="formname"><h3>Email:</td>
+                    <td style="text-align:center"><h4>{{$user->email}}</td>
+                </ion-row>
+                <ion-row>
+                    <td style="text-align:left" class="formname"><h3>Review Centers:</td>
+                    <td style="text-align:center"><h4>
+                    @foreach($revcenters as $revcenter)
+                        {{$revcenter->revcenter->revcenter_name}}<br>
+                    @endforeach()<br>
+                    <a href="/reviewee/addRevCenter">+ Add RevCenter</a></h4></td>
+                </ion-row>
+            </ion-grid>    </div>
+            <br><br><br>
+            <div style=" background-color: white; border-radius: 25px;" class="profilecontainer">
+            <br>
+            @include('includes.progresschart')
+            </div>
+            <br><br>
+        </div>
+    </nav>
+    <div>
+</ion-content>
+
+    
