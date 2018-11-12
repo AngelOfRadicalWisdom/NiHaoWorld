@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ReviewCenter } from '../../Models/reviewcenter.model';
 import { PhpServerProvider} from '../../providers/php-server/php-server';
+import {TakediagPage}from '../takediag/takediag';
 /**
  * Generated class for the LearningPathSelectionPage page.
  *
@@ -18,7 +19,7 @@ export class LearningPathSelectionPage {
   requestData;
 revcenterlist:any;
 learningpath:any;
-learningpathdata=[];
+learningpathdata = [];
   list = []; 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public PhpServer:PhpServerProvider) {
@@ -41,7 +42,13 @@ learningpathdata=[];
   
   viewLearningPath(){
     this.requestData=this.PhpServer.getUsername();
-    this
+    this.PhpServer.getLearningPath(this.requestData,'m/reviewee/ViewLearningPath').then(data=>{
+     this.learningpath=data;
+     this.learningpathdata=this.learningpath;
+     if(this.learningpath=500){
+       this.navCtrl.push(TakediagPage);
+     }
+    })
 
 
   }
